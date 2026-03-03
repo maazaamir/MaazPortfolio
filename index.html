@@ -4,14 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maaz Portfolio Website</title>
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.css">
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 </head>
-
 <body>
-
 <div id="main" data-scroll-container>
 
   <div id="fs"></div>
@@ -25,14 +22,13 @@
     </div>
     <h1 class="reveal">
       This is <span class="textcolor">Maaz Aamir</span>
+      <span class="loader"></span>
     </h1>
   </div>
 
   <div id="green"></div>
 
-  <!-- HOME -->
-  <div id="home" data-scroll-section>
-
+  <div id="home">
     <div id="nav">
       <a href="#">Maaz Aamir<span class="line"></span></a>
       <a href="#">Playbook<span class="line"></span></a>
@@ -61,19 +57,15 @@
       <div id="imgleft">
         <h1>I’m Maaz Aamir, I CREATE Crafting <span>unconventional</span> YET functional & visually pleasing, responsive interfaces for web and mobile.</h1>
       </div>
-
       <div id="imgright">
-        <div class="imgcontainer"></div>
-        <div class="imgcontainer"></div>
-        <div class="imgcontainer"></div>
+        <div class="imgcontainer" style="background-image:url('./Images/unsplash.png')"></div>
+        <div class="imgcontainer" style="background-image:url('./Images/redstore.png')"></div>
+        <div class="imgcontainer" style="background-image:url('./Images/company.png')"></div>
       </div>
     </div>
-
   </div>
 
-  <!-- WORK -->
-  <div id="work" data-scroll-section>
-
+  <div id="work">
     <div class="exprince">
       <h5>Things I Can Help you with.</h5>
       <h2>Web & mobile / <br> UI&Ux / Branding / <br>front-end Development</h2>
@@ -81,18 +73,18 @@
     </div>
 
     <div class="workrow">
-      <h1>Feat Wo<span class="textcolor">r</span>ks <span class="mini">(05)</span></h1>
+      <h1>Feat Wo<span class="textcolor">r</span>ks<div class="mini">(05)</div></h1>
     </div>
 
     <div id="images">
-      <div class="cnt">
-        <img src="./Images/aeizei.7edf201c.png" alt="">
+      <div class="cnt cnt1">
+        <img src="./Images/aeizei.7edf201c.png" alt="aeizei project">
       </div>
-      <div class="cnt">
-        <img src="./Images/display.835f9d62.png" alt="">
+      <div class="cnt cnt2">
+        <img src="./Images/display.835f9d62.png" alt="display project">
       </div>
-      <div class="cnt">
-        <img src="./Images/quaive.6fc624fe.png" alt="">
+      <div class="cnt cnt3">
+        <img src="./Images/quaive.6fc624fe.png" alt="quaive project">
       </div>
     </div>
 
@@ -116,20 +108,14 @@
             <li>Responsive Design</li>
           </ul>
         </div>
-
         <div class="skills-right">
-          <p>
-            Throughout my journey as a front-end developer, I have contributed to real-world production-ready projects with clean, scalable and responsive interfaces.
-          </p>
+          <p>Throughout my journey as a front-end developer, I have contributed to real-world production-ready projects with clean, scalable and responsive interfaces.</p>
         </div>
       </div>
     </div>
-
   </div>
 
-  <!-- HERO -->
-  <section class="hero-section" data-scroll-section>
-
+  <section class="hero-section">
     <h1 class="hero-heading">
       LET'S TALK<br>
       ABOUT THE NEXT<br>
@@ -148,13 +134,12 @@
     </div>
 
     <footer class="site-footer">
-      <div>©2025 Maaz Aamir, All rights reserved</div>
+      <div class="footer-main">©2025 Maaz Aamir, All rights reserved</div>
       <div class="footer-bottom">
         <span>Maaz Aamir</span>
         <span>Portfolio 2025</span>
       </div>
     </footer>
-
   </section>
 
 </div>
@@ -162,6 +147,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
 <script src="script.js"></script>
-
 </body>
 </html>
