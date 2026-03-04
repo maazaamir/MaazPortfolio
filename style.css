@@ -196,6 +196,7 @@ img { max-width: 100%; display: block; }
   z-index: 3;
 }
 #imgleft h1 {
+  padding-top: 2px;
   font-size: clamp(18px, 2.1vw, 28px);
   font-weight: 600;
   letter-spacing: .5px;
