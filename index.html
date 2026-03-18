@@ -7,16 +7,11 @@
   <meta name="description" content="Portfolio of Maaz Aamir — Front-End Developer specializing in Angular & Vue.js. Clean, responsive, and accessible UI/UX." />
   <title>Maaz Aamir — Front-End Developer</title>
 
-  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-rXnK1lnT4UvF6nHOS5NPpX4YcG4U6h5Z8q4T/4I2EOibzp6RMw3XEzFz6L5Rp6zKh/b3jhoK1Yw9w9aE6N+IXA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
-  <!-- Locomotive Scroll (optional smooth-scroll visuals) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
-  
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
@@ -24,7 +19,6 @@
   <a class="skip-link" href="#content">Skip to content</a>
 
   <div id="main" data-scroll-container>
-    <!-- Loader -->
     <div id="loader" aria-hidden="true">
       <div id="topheading">
         <h5 class="reveal">Design Portfolio</h5>
@@ -33,13 +27,11 @@
       <h1 class="reveal">This is <span class="textcolor">Maaz Aamir</span> <span class="reveal special"></span> <span class="loader" aria-label="Loading"></span></h1>
     </div>
 
-    <!-- Reveal layers -->
     <div id="fs"></div>
     <div id="white"></div>
     <div id="elem"></div>
     <div id="green"></div>
 
-    <!-- Header / Nav -->
     <header id="home" class="section">
       <nav id="nav" class="container">
         <a class="brand" href="#home" aria-label="Home">
@@ -58,7 +50,24 @@
         </div>
       </nav>
 
-      <!-- Hero -->
+      <div class="circle-badge" data-scroll data-scroll-sticky data-scroll-target="#home">
+        <div class="circle-text">
+          <svg viewBox="0 0 100 100" width="150" height="150">
+            <defs>
+              <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
+            </defs>
+            <text font-size="10">
+              <textPath xlink:href="#circlePath">
+                MAAZ DEV STUDIO • DIGITAL CRAFT • 2026 • 
+              </textPath>
+            </text>
+          </svg>
+          <div class="circle-center">
+            <i class="fas fa-arrow-down"></i>
+          </div>
+        </div>
+      </div>
+
       <div class="row container" id="content">
         <h1 class="animate-slide-in delay-0">Front</h1>
 
@@ -68,32 +77,29 @@
         </div>
 
         <div class="text animate-slide-in delay-2">
-          <p>LOCAL TIME 10 AM</p>
-          <h5 id="localTime">To 7 PM</h5>
+          <p>LOCAL TIME</p>
+          <h5 id="localTime">Loading...</h5>
+        </div>
+        
+        <div class="row container">
+          <img src="Images/refresh-svgrepo-com.svg" alt="" class="img" loading="lazy">
+          <h1><span><span class="textcolor">End</span> Developer</span></h1>
         </div>
       </div>
 
-      <div class="row container">
-        <img src="Images/refresh-svgrepo-com.svg" alt="" class="img" loading="lazy">
-        <h1><span><span class="textcolor">End</span> Developer</span></h1>
-      </div>
-
-      <!-- Imagery -->
       <div id="imagery" class="container">
         <div id="imgleft">
           <h1>I’m Maaz Aamir, crafting <span>unconventional</span> yet functional & visually pleasing, responsive interfaces for web and mobile.</h1>
         </div>
 
         <div id="imgright">
-<div class="imgcontainer"
-       style="background-image:url('https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?q=80&w=1600&auto=format&fit=crop');">
-  </div>          <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1520517601640-32ec514e4a15?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?q=80&w=1600&auto=format&fit=crop');"></div>
+          <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1520517601640-32ec514e4a15?q=80&w=1600&auto=format&fit=crop');"></div>
           <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1635713150362-ed0cd425e697?q=80&w=1600&auto=format&fit=crop');"></div>
         </div>
       </div>
     </header>
 
-    <!-- Work / Featured -->
     <section id="work" class="section">
       <div class="exprince container">
         <h5>Things I can help you with</h5>
@@ -111,131 +117,158 @@
 
       <div id="images" class="container">
         <div class="cnt cnt1">
-          <img data-scroll data-scroll-speed="-1.5" src="Images/aeizei.7edf201c.png" alt="Project thumbnail 2" loading="lazy">
+          <img data-scroll data-scroll-speed="-1.5" src="Images/aeizei.7edf201c.png" alt="Aeizei Project" loading="lazy">
+          <div class="overlay">
+            <div class="overlay-text">
+              <h5>UI/UX Design</h5>
+              <h3>Aeizei Brand</h3>
+            </div>
+            <div class="overlay-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
         </div>
+
         <div class="cnt cnt2">
-          <img data-scroll data-scroll-speed="-1.5" src="Images/display.835f9d62.png" alt="Project thumbnail 2" loading="lazy">
+          <img data-scroll data-scroll-speed="-1.5" src="Images/display.835f9d62.png" alt="Display Dashboard" loading="lazy">
+          <div class="overlay">
+            <div class="overlay-text">
+              <h5>Web Development</h5>
+              <h3>Admin Display</h3>
+            </div>
+            <div class="overlay-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
         </div>
+
         <div class="cnt cnt3">
-          <img data-scroll data-scroll-speed="-1.5" src="Images/quaive.6fc624fe.png" alt="Project thumbnail 3" loading="lazy">
+          <img data-scroll data-scroll-speed="-1.5" src="Images/quaive.6fc624fe.png" alt="Quaive Interface" loading="lazy">
+          <div class="overlay">
+            <div class="overlay-text">
+              <h5>Branding</h5>
+              <h3>Quaive App</h3>
+            </div>
+            <div class="overlay-icon">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- Skills / Playbook -->
+    <section id="playbook" class="section playbook-section">
+      <div class="container">
+        <div class="playbook-header">
+          <h1 class="section-heading">Digital <span class="textcolor">Playbook</span></h1>
+          <p class="subtitle">Curated resources, UI kits, and production-ready code for modern developers.</p>
+        </div>
+
+        <div class="resources-grid">
+          <div class="resource-card" data-scroll data-scroll-speed="1">
+            <div class="resource-badge">Free</div>
+            <div class="resource-content">
+              <div class="resource-icon"><i class="fas fa-golf-ball"></i></div>
+              <h3>Sidcup Family Golf</h3>
+              <p>A high-performance landing page featuring GSAP scroll animations and immersive video backgrounds.</p>
+              <a href="https://maazaamir.gumroad.com" target="_blank" class="resource-link hero-btn">
+                Get Template <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="resource-card" data-scroll data-scroll-speed="1.2">
+            <div class="resource-badge">Premium</div>
+            <div class="resource-content">
+              <div class="resource-icon"><i class="fab fa-netflix"></i></div>
+              <h3>Netflix Clone UI Kit</h3>
+              <p>Complete responsive streaming interface built with clean HTML/CSS and modular JavaScript components.</p>
+              <a href="https://maazaamir.gumroad.com" target="_blank" class="resource-link hero-btn">
+                View on Gumroad <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+
+          <div class="resource-card" data-scroll data-scroll-speed="0.8">
+            <div class="resource-badge">Free</div>
+            <div class="resource-content">
+              <div class="resource-icon"><i class="fas fa-shopping-bag"></i></div>
+              <h3>RedStore Commerce</h3>
+              <p>A fully responsive e-commerce front-end template optimized for high conversion and speed.</p>
+              <a href="https://maazaamir.github.io/redstore/" target="_blank" class="resource-link hero-btn">
+                Live Preview <i class="fas fa-arrow-right"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="playbook-footer">
+          <a href="https://maazaamir.gumroad.com" class="hero-btn outline">Browse All Resources</a>
+        </div>
+      </div>
+    </section>
+
     <section id="skills" class="section">
       <div class="container">
         <h1 class="section-heading">Technology <span class="textcolor">S</span>tack</h1>
-
         <div class="skills-section">
           <div class="skills-left">
             <ul class="skills-list">
-              <li>HTML</li>
-              <li>CSS</li>
-              <li>JavaScript</li>
-              <li>TypeScript</li>
-              <li>Angular</li>
-              <li>Vue.js</li>
-              <li>REST APIs</li>
-              <li>Node.js</li>
-              <li>Bootstrap</li>
-              <li>Tailwind CSS</li>
-              <li>PrimeNG / PrimeVue</li>
-              <li>Responsive Design</li>
+              <li>HTML</li><li>CSS</li><li>JavaScript</li><li>TypeScript</li><li>Angular</li><li>Vue.js</li><li>REST APIs</li><li>Node.js</li><li>Bootstrap</li><li>Tailwind CSS</li><li>PrimeNG / PrimeVue</li><li>Responsive Design</li>
             </ul>
           </div>
-          <!-- Projects -->
-<section id="projects" class="section projects-section">
-  <div class="container">
-
-    <h1 class="section-heading">
-      Selected <span class="textcolor">Projects</span>
-    </h1>
-
-    <div class="projects-grid">
-
-      <!-- Project 1 -->
-      <div class="project-card">
-        <img src="Images/ea60e224dd6d009926b751998e011154.jpg" alt="Netflix Clone Project">
-
-        <div class="project-info">
-          <h3>Netflix Clone</h3>
-          <p>Responsive streaming platform UI built using HTML, CSS and JavaScript.</p>
-
-          <div class="project-links">
-            <a href="https://github.com/maazaamir/netflix-clone" target="_blank">
-              <i class="fab fa-github"></i> Code
-            </a>
-
-            <a href="https://maazaamir.github.io/netflix-clone/" target="_blank">
-              <i class="fas fa-external-link-alt"></i> Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 2 -->
-      <div class="project-card">
-        <img src="Images/ChatGPT Image Mar 9, 2026, 04_19_10 AM.png" alt="Admin Dashboard">
-
-        <div class="project-info">
-          <h3>Admin Dashboard</h3>
-          <p>Modern dashboard interface with charts, widgets and responsive layout.</p>
-
-          <div class="project-links">
-            <a href="#" target="_blank">
-              <i class="fab fa-github"></i> Code
-            </a>
-
-            <a href="#" target="_blank">
-              <i class="fas fa-external-link-alt"></i> Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 3 -->
-      <div class="project-card">
-        <img src="Images/a11edff0413f7b840fd71fab1dcd9924.jpg" alt="Portfolio Website">
-
-        <div class="project-info">
-          <h3>Developer Portfolio</h3>
-          <p>Animated portfolio using GSAP and modern UI layout.</p>
-
-          <div class="project-links">
-            <a href="#" target="_blank">
-              <i class="fab fa-github"></i> Code
-            </a>
-
-            <a href="#" target="_blank">
-              <i class="fas fa-external-link-alt"></i> Live
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</section>
           <div class="skills-right">
-            <p>
-              I build production-ready interfaces in Angular and Vue, with a focus on clean structure,
-              performance and accessibility. I care about UX details, maintainable code, and scalable
-              component design that grows with your product.
-            </p>
+            <p>I build production-ready interfaces in Angular and Vue, with a focus on clean structure, performance and accessibility. I care about UX details, maintainable code, and scalable component design that grows with your product.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact / CTA -->
+    <section id="projects" class="section projects-section">
+      <div class="container">
+        <h1 class="section-heading">Selected <span class="textcolor">Projects</span></h1>
+        <div class="projects-grid">
+          <div class="project-card">
+            <img src="Images/ea60e224dd6d009926b751998e011154.jpg" alt="Netflix Clone Project">
+            <div class="project-info">
+              <h3>Netflix Clone</h3>
+              <p>Responsive streaming platform UI built using HTML, CSS and JavaScript.</p>
+              <div class="project-links">
+                <a href="https://github.com/maazaamir/netflix-clone" target="_blank"><i class="fab fa-github"></i> Code</a>
+                <a href="https://maazaamir.github.io/netflix-clone/" target="_blank"><i class="fas fa-external-link-alt"></i> Live</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="Images/ChatGPT Image Mar 9, 2026, 04_19_10 AM.png" alt="Admin Dashboard">
+            <div class="project-info">
+              <h3>Admin Dashboard</h3>
+              <p>Modern dashboard interface with charts, widgets and responsive layout.</p>
+              <div class="project-links">
+                <a href="#"><i class="fab fa-github"></i> Code</a>
+                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+              </div>
+            </div>
+          </div>
+          <div class="project-card">
+            <img src="Images/a11edff0413f7b840fd71fab1dcd9924.jpg" alt="Portfolio Website">
+            <div class="project-info">
+              <h3>Developer Portfolio</h3>
+              <p>Animated portfolio using GSAP and modern UI layout.</p>
+              <div class="project-links">
+                <a href="#"><i class="fab fa-github"></i> Code</a>
+                <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="hero-section section" aria-labelledby="contactHeading">
       <div class="heading-with-arrow container">
-        <h1 id="contactHeading" class="hero-heading">
-          LET'S TALK<br>ABOUT THE NEXT<br><span class="highlight">BIG THING</span>
-        </h1>
-        <svg class="o-ui-arrow" width="34" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <h1 id="contactHeading" class="hero-heading">LET'S TALK<br>ABOUT THE NEXT<br><span class="highlight">BIG THING</span></h1>
+        <svg class="o-ui-arrow" width="34" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M3.10162 3.10156L62.9999 62.9999" stroke-linecap="round" stroke-linejoin="round"></path>
           <path d="M63 1.00001L63 63L0.999989 63" stroke-linecap="round" stroke-linejoin="round"></path>
         </svg>
@@ -246,10 +279,10 @@
       </div>
 
       <div class="social-links">
-        <a href="https://github.com/your-username" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
-        <a href="https://linkedin.com/in/your-username" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
-        <a href="https://instagram.com/your-handle" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
-        <a href="https://twitter.com/your-handle" target="_blank" rel="noopener" class="social-btn"><i class="fab fa-twitter"></i> Twitter/X</a>
+        <a href="#" target="_blank" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
+        <a href="#" target="_blank" class="social-btn"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+        <a href="#" target="_blank" class="social-btn"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="#" target="_blank" class="social-btn"><i class="fab fa-twitter"></i> Twitter/X</a>
       </div>
 
       <footer class="site-footer">
@@ -262,8 +295,8 @@
     </section>
   </div>
 
-  <!-- Scripts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
   <script src="script.js"></script>
 </body>
