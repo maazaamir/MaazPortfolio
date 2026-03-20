@@ -858,3 +858,42 @@ height:200px;
   .playbook-section { padding-block: 80px; }
   .resource-card { padding: 30px; }
 }
+/* Navigation Specific Button Styling */
+.hire-me-nav {
+    padding: 8px 20px !important; /* Slightly smaller for the nav bar */
+    font-size: 12px !important;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: #fff !important;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.hire-me-nav:hover {
+    background: var(--brand);
+    color: var(--ink) !important;
+    transform: translateY(-2px);
+}
+
+/* Ensure the nav links align vertically with the button */
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Mobile Nav adjustment */
+@media (max-width: 860px) {
+    .nav-links {
+        padding: 20px;
+        align-items: flex-start;
+    }
+    
+    .hire-me-nav {
+        margin-left: 0;
+        margin-top: 10px;
+        width: 100%; /* Full width on mobile menu */
+        text-align: center;
+    }
+}

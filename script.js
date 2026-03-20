@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    // 1. Reveal to Span Function (For text animations)
     function revealToSpan() {
         document.querySelectorAll(".reveal").forEach(function (elem) {
             let parent = document.createElement("span");
@@ -14,6 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealToSpan();
 
+    // 2. Navigation Toggle Logic
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     const timeElement = document.getElementById('localTime');
@@ -33,11 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // 3. Local Time & Availability Tracker
     function updateTime() {
         const now = new Date();
         const options = { hour: 'numeric', minute: '2-digit', hour12: true };
         const timeString = now.toLocaleTimeString('en-US', options);
         const currentHour = now.getHours();
+        // Available between 10 AM and 7 PM
         const isAvailable = currentHour >= 10 && currentHour < 19;
         
         if (timeElement) {
@@ -47,6 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTime();
     setInterval(updateTime, 60000);
 
+    // 4. GSAP Loader Timeline & Locomotive Scroll
     document.body.style.overflow = "hidden";
     let tl = gsap.timeline();
 
@@ -61,47 +66,59 @@ document.addEventListener("DOMContentLoaded", () => {
       .to(".parent .child", { y: "100%", duration: 1.4, delay: 1, ease: "circ.inOut", stagger: 0.2 })
       .to("#loader", { height: 0, duration: 1, ease: "circ.inOut" })
       .to("#green", { height: "100%", duration: 1, marginTop: "-100%", ease: "circ.inOut" }, "-=1")
-      .to("#green", { height: "0%", duration: 1, delay: 0.2, ease: "circ.inOut", onComplete: () => {
-            document.body.style.overflow = "auto";
-            
-            const scroller = document.querySelector("[data-scroll-container]");
-            const scroll = new LocomotiveScroll({
-                el: scroller,
-                smooth: true
-            });
+      .to("#green", { 
+            height: "0%", 
+            duration: 1, 
+            delay: 0.2, 
+            ease: "circ.inOut", 
+            onComplete: () => {
+                // Re-enable scrolling
+                document.body.style.overflow = "auto";
+                
+                // Initialize Locomotive Scroll
+                const scroller = document.querySelector("[data-scroll-container]");
+                const scroll = new LocomotiveScroll({
+                    el: scroller,
+                    smooth: true
+                });
 
-            gsap.registerPlugin(ScrollTrigger);
-            scroll.on("scroll", ScrollTrigger.update);
+                // Link GSAP ScrollTrigger to Locomotive Scroll
+                gsap.registerPlugin(ScrollTrigger);
+                scroll.on("scroll", ScrollTrigger.update);
 
-            ScrollTrigger.scrollerProxy(scroller, {
-                scrollTop(value) {
-                    return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
-                },
-                getBoundingClientRect() {
-                    return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
-                },
-                pinType: scroller.style.transform ? "transform" : "fixed"
-            });
+                ScrollTrigger.scrollerProxy(scroller, {
+                    scrollTop(value) {
+                        return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
+                    },
+                    getBoundingClientRect() {
+                        return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight };
+                    },
+                    pinType: scroller.style.transform ? "transform" : "fixed"
+                });
 
-            gsap.from("#images .cnt", {
-                scrollTrigger: {
-                    trigger: "#images",
-                    scroller: scroller,
-                    start: "top 80%",
-                    toggleActions: "play none none none"
-                },
-                y: 100,
-                opacity: 0,
-                duration: 1.2,
-                ease: "power4.out",
-                stagger: 0.2
-            });
+                // Reveal images on scroll
+                gsap.from("#images .cnt", {
+                    scrollTrigger: {
+                        trigger: "#images",
+                        scroller: scroller,
+                        start: "top 80%",
+                        toggleActions: "play none none none"
+                    },
+                    y: 100,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power4.out",
+                    stagger: 0.2
+                });
 
-            ScrollTrigger.addEventListener("refresh", () => scroll.update());
-            ScrollTrigger.refresh();
-        }
-    });
+                ScrollTrigger.addEventListener("refresh", () => scroll.update());
+                ScrollTrigger.refresh();
+            }
+        })
+      // Optional: Reveal the 'Hire Me' button in nav after loader
+      .from(".hire-me-nav", { opacity: 0, y: -10, duration: 0.5, ease: "power2.out" }, "-=0.5");
 
+    // 5. Floating Imagery Hover/Idle Animation
     gsap.to("#imgright .imgcontainer:nth-child(1)", { y: -20, duration: 2, repeat: -1, yoyo: true, ease: "power1.inOut" });
     gsap.to("#imgright .imgcontainer:nth-child(2)", { y: -30, duration: 2.5, repeat: -1, yoyo: true, ease: "power1.inOut" });
     gsap.to("#imgright .imgcontainer:nth-child(3)", { y: -25, duration: 3, repeat: -1, yoyo: true, ease: "power1.inOut" });
