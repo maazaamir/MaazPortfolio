@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     revealToSpan();
 
-    // 2. Navigation Toggle Logic
+    // 2. Navigation Toggle Logic (FIXED FOR MOBILE)
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
     const timeElement = document.getElementById('localTime');
@@ -25,12 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
             const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
             navToggle.setAttribute('aria-expanded', !isExpanded);
             navLinks.classList.toggle('open');
+            navToggle.classList.toggle('active');
+            
+            // Prevent background scrolling when menu is open
+            document.body.style.overflow = !isExpanded ? "hidden" : "auto";
         });
 
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('open');
+                navToggle.classList.remove('active');
                 navToggle.setAttribute('aria-expanded', 'false');
+                document.body.style.overflow = "auto";
             });
         });
     }
@@ -41,7 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const options = { hour: 'numeric', minute: '2-digit', hour12: true };
         const timeString = now.toLocaleTimeString('en-US', options);
         const currentHour = now.getHours();
-        // Available between 10 AM and 7 PM
         const isAvailable = currentHour >= 10 && currentHour < 19;
         
         if (timeElement) {
@@ -72,17 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
             delay: 0.2, 
             ease: "circ.inOut", 
             onComplete: () => {
-                // Re-enable scrolling
                 document.body.style.overflow = "auto";
                 
-                // Initialize Locomotive Scroll
                 const scroller = document.querySelector("[data-scroll-container]");
                 const scroll = new LocomotiveScroll({
                     el: scroller,
                     smooth: true
                 });
 
-                // Link GSAP ScrollTrigger to Locomotive Scroll
                 gsap.registerPlugin(ScrollTrigger);
                 scroll.on("scroll", ScrollTrigger.update);
 
@@ -96,7 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     pinType: scroller.style.transform ? "transform" : "fixed"
                 });
 
-                // Reveal images on scroll
                 gsap.from("#images .cnt", {
                     scrollTrigger: {
                         trigger: "#images",
@@ -115,10 +116,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 ScrollTrigger.refresh();
             }
         })
-      // Optional: Reveal the 'Hire Me' button in nav after loader
       .from(".hire-me-nav", { opacity: 0, y: -10, duration: 0.5, ease: "power2.out" }, "-=0.5");
 
-    // 5. Floating Imagery Hover/Idle Animation
+    // 5. Floating Imagery Hover
     gsap.to("#imgright .imgcontainer:nth-child(1)", { y: -20, duration: 2, repeat: -1, yoyo: true, ease: "power1.inOut" });
     gsap.to("#imgright .imgcontainer:nth-child(2)", { y: -30, duration: 2.5, repeat: -1, yoyo: true, ease: "power1.inOut" });
     gsap.to("#imgright .imgcontainer:nth-child(3)", { y: -25, duration: 3, repeat: -1, yoyo: true, ease: "power1.inOut" });
