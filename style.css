@@ -186,19 +186,88 @@ img { max-width: 100%; display: block; }
 .imgcontainer:nth-child(2) { left: 20%; transform: rotate(-5deg); z-index: 2; }
 .imgcontainer:nth-child(3) { left: 40%; transform: rotate(0deg); z-index: 3; }
 
-/* Work & Images */
-#work { padding-top: 120px; background: var(--panel); margin-top: 120px; }
-#images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding-bottom: 60px; }
-.cnt { position: relative; aspect-ratio: 4/5; border-radius: 20px; overflow: hidden; }
-.cnt img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s ease; }
-.overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: 30px; opacity: 0; transition: 0.4s ease;
+/* Work & Images Section */
+#work { 
+  padding-top: 140px; 
+  background: var(--panel); 
+  margin-top: 120px; 
+  border-radius: 40px 40px 0 0; /* Softens the transition from the hero */
 }
-.cnt:hover .overlay { opacity: 1; }
-.cnt:hover img { transform: scale(1.1); filter: blur(2px) brightness(0.7); }
+
+#images { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: clamp(20px, 3vw, 40px); 
+  padding-bottom: 80px; 
+}
+
+.cnt { 
+  position: relative; 
+  aspect-ratio: 4/5; 
+  border-radius: 24px; 
+  overflow: hidden; 
+  background: #111; /* Prevents white flash during loading */
+  cursor: pointer;
+}
+
+.cnt img { 
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover; 
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1); 
+  will-change: transform;
+}
+
+.overlay {
+  position: absolute; 
+  inset: 0;
+  /* Cleaner gradient for better text readability */
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 40%, transparent 100%);
+  display: flex; 
+  flex-direction: column; 
+  justify-content: flex-end;
+  padding: 40px; 
+  opacity: 0; 
+  transform: translateY(10px); /* Slight lift effect */
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none; /* Allows click through to the image if needed */
+}
+
+.overlay-text h5 {
+  color: var(--brand);
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 3px;
+  margin-bottom: 8px;
+}
+
+.overlay-text h3 {
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Hover States */
+.cnt:hover .overlay { 
+  opacity: 1; 
+  transform: translateY(0); 
+}
+
+.cnt:hover img { 
+  transform: scale(1.1); 
+  /* Removed blur/brightness for a cleaner 'High-Fashion' look */
+}
+
+/* Responsive Fix */
+@media (max-width: 1024px) {
+  #images { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 600px) {
+  #images { grid-template-columns: 1fr; }
+  .cnt { aspect-ratio: 1/1; } /* Square on mobile looks better */
+}
 
 /* Playbook & Resources */
 .playbook-section { padding: 100px 0; }
