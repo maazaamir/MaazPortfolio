@@ -59,6 +59,60 @@ img { max-width: 100%; display: block; }
   width: 100%;
   height: 0;
 }
+/* Loader and Transition Styles */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+#topheading {
+  position: absolute;
+  top: 5%;
+  text-align: center;
+}
+
+.reveal {
+  overflow: hidden;
+  display: block;
+}
+
+#loader h1 {
+  font-size: clamp(30px, 5vw, 60px);
+  font-weight: 300;
+}
+
+.loader-spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid #fff;
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-top: 20px;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Transition Layers */
+#fs, #white, #elem, #green {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 0;
+}
+
+#fs { background: #222; z-index: 103; }
+#white { background: #dadada; z-index: 102; }
+#elem { background: #509e8e; z-index: 101; }
+#green { background: #14CF93; top: auto; bottom: 0; z-index: 100; }
 #fs { background:#343434; z-index: 12; }
 #white { background:#dadada; z-index: 11; }
 #elem { background:#509e8e; z-index: 10; }
@@ -369,38 +423,128 @@ img { max-width: 100%; display: block; }
     gap: 30px;
   }
 }
-
 /* Contact & Footer */
-.hero-section { text-align: center; padding: 120px 16px; background: #1a2e2a; color: #fff; }
-.hero-heading { font-size: clamp(38px, 6vw, 88px); font-weight: 800; line-height: 1.1; margin: 0; }
+.hero-section { 
+  text-align: center; 
+  padding: 120px 16px; 
+  background: #1a2e2a; 
+  color: #fff; 
+  position: relative;
+  overflow: hidden;
+}
+
+.heading-with-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.hero-heading { 
+  font-size: clamp(38px, 6vw, 88px); 
+  font-weight: 800; 
+  line-height: 1.1; 
+  margin: 0; 
+}
+
+/* Fix for Attached Buttons */
+.hero-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Space between buttons */
+  width: 100%;
+}
+
 .hero-btn { 
-  padding: 14px 30px; background: #fff; color: #111; border-radius: 50px; 
-  text-decoration: none; font-weight: 600; transition: 0.3s; display: inline-block;
+  padding: 16px 32px; 
+  background: #fff; 
+  color: #111; 
+  border-radius: 50px; 
+  text-decoration: none; 
+  font-weight: 700; 
+  transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1); 
+  display: inline-block;
+  white-space: nowrap;
 }
-.hero-btn.outline { background: transparent; color: #fff; border: 2px solid #fff; }
-.hero-btn:hover { background: var(--brand); color: #fff; }
-.social-links { display: flex; justify-content: center; gap: 28px; margin-top: 50px; }
-.social-btn { color: #fff; text-decoration: none; }
-.site-footer { margin-top: 70px; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 30px; }
-.footer-bottom { display: flex; justify-content: space-between; max-width: 900px; margin: auto; }
 
-/* Badge */
-.circle-badge { position: absolute; right: 5%; top: 50%; transform: translateY(-50%); z-index: 10; }
-.circle-text svg { animation: rotateText 20s linear infinite; fill: var(--ink); }
-@keyframes rotateText { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-/* Animations */
-.animate-slide-in { animation: slideInUp 0.7s ease both; }
-@keyframes slideInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
-.loader {
-  width: 40px; height: 40px; border-radius: 50%; border-top: 3px solid #FFF;
-  border-right: 3px solid transparent; animation: rotation 1s linear infinite;
+.hero-btn.outline { 
+  background: transparent; 
+  color: #fff; 
+  border: 2px solid rgba(255,255,255,0.3); 
 }
-@keyframes rotation { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+.hero-btn:hover { 
+  background: var(--brand); 
+  color: #fff; 
+  transform: translateY(-5px);
+  border-color: var(--brand);
+}
+
+/* Social Links Refinement */
+.social-links { 
+  display: flex; 
+  justify-content: center; 
+  flex-wrap: wrap;
+  gap: 28px; 
+  margin-top: 80px; 
+}
+
+.social-btn { 
+  color: rgba(255,255,255,0.6); 
+  text-decoration: none; 
+  font-size: 14px;
+  font-weight: 500;
+  transition: 0.3s;
+}
+
+.social-btn:hover {
+  color: var(--brand);
+}
+
+/* Footer Section */
+.site-footer { 
+  margin-top: 100px; 
+  border-top: 1px solid rgba(255,255,255,0.05); 
+  padding: 40px 0; 
+}
+
+.footer-main {
+  font-size: 13px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.footer-bottom { 
+  display: flex; 
+  justify-content: space-between; 
+  max-width: 100%; 
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* Mobile Responsive Fixes */
 @media (max-width: 768px) {
-  #images { grid-template-columns: 1fr; }
-  .skills-section { grid-template-columns: 1fr; }
-  .circle-badge { display: none; }
+  .hero-buttons {
+    flex-direction: column; /* Stack buttons vertically */
+    gap: 15px;
+  }
+  
+  .hero-btn {
+    width: 100%; /* Make buttons full width on mobile */
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  
+  .social-links {
+    gap: 20px;
+  }
 }
