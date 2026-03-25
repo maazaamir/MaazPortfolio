@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function revealToSpan() {
         document.querySelectorAll(".reveal").forEach(function (elem) {
             let tempContent = elem.innerHTML;
-            elem.innerHTML = ""; // Clear existing to prevent duplicates
+            elem.innerHTML = ""; 
             let parent = document.createElement("span");
             let child = document.createElement("span");
             parent.classList.add("parent");
@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Timeline for Loader
     let tl = gsap.timeline();
 
-    // Initial state: ensure children are hidden
     gsap.set(".parent .child", { y: "100%" });
 
     tl.to(".parent .child", {
@@ -32,30 +31,34 @@ document.addEventListener("DOMContentLoaded", () => {
     .to("#fs", { height: "100vh", duration: 0.8, ease: "expo.inOut", delay: 0.5 })
     .to("#white", { height: "100vh", duration: 0.8, ease: "expo.inOut" }, "-=0.6")
     .to("#elem", { height: "100vh", duration: 0.8, ease: "expo.inOut" }, "-=0.6")
-    .to("#loader", { opacity: 0, duration: 0.2 }) // Hide loader content
+    .to("#loader", { opacity: 0, duration: 0.2 }) 
     .to("#fs, #white, #elem", {
         height: "0%",
         duration: 0.8,
         stagger: 0.1,
         ease: "expo.inOut",
         onComplete: () => {
-            initScroll(); // Only start scroll after loader is gone
+            initScroll(); // Initialize scroll
             document.getElementById("loader").style.display = "none";
         }
     })
     .to("#green", { height: "100%", duration: 0.6, top: 0, ease: "circ.inOut" }, "-=1")
     .to("#green", { height: "0%", duration: 0.6, ease: "circ.inOut" });
 
-    // 3. Initialize Locomotive Scroll
+    // 3. Initialize Locomotive Scroll & Sync GSAP
     function initScroll() {
         const scroller = document.querySelector("[data-scroll-container]");
+        
         const scroll = new LocomotiveScroll({
             el: scroller,
-            smooth: true
+            smooth: true,
+            multiplier: 1, // Adjust scroll speed here
+            lerp: 0.05 // Adjust smoothness (0.1 is default)
         });
 
-        // Sync GSAP ScrollTrigger with Locomotive
+        // Sync ScrollTrigger with Locomotive
         scroll.on("scroll", ScrollTrigger.update);
+
         ScrollTrigger.scrollerProxy(scroller, {
             scrollTop(value) {
                 return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
@@ -66,28 +69,38 @@ document.addEventListener("DOMContentLoaded", () => {
             pinType: scroller.style.transform ? "transform" : "fixed"
         });
 
+        // VERY IMPORTANT: Tell ScrollTrigger to watch the Locomotive scroller
+        ScrollTrigger.addEventListener("refresh", () => scroll.update());
         ScrollTrigger.refresh();
     }
 
-    // 4. Update Time
+    // 4. Update Time (Using the 24-hour format or 12-hour)
     function updateTime() {
         const timeElement = document.getElementById('localTime');
         if (timeElement) {
             const now = new Date();
-            timeElement.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' }) + " — AVAILABLE";
+            timeElement.innerText = now.toLocaleTimeString('en-US', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                hour12: true 
+            }) + " INDIA — AVAILABLE";
         }
     }
     updateTime();
     setInterval(updateTime, 60000);
 
-    // 5. Image Hover Parallax (Simple)
-    document.querySelectorAll(".imgcontainer").forEach((img, i) => {
-        gsap.to(img, {
-            y: (i + 1) * -15,
-            duration: 2,
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
+    // 5. Image Hover Parallax 
+    // Optimization: Only animate if the element exists to avoid console errors
+    const imgContainers = document.querySelectorAll(".imgcontainer");
+    if(imgContainers.length > 0) {
+        imgContainers.forEach((img, i) => {
+            gsap.to(img, {
+                y: (i + 1) * -15,
+                duration: 2,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            });
         });
-    });
+    }
 });
