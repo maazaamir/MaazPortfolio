@@ -104,3 +104,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 });
+// Custom Follower Cursor Logic
+const cursor = document.querySelector("#cursor");
+const cursorText = document.querySelector(".cursor-text");
+
+// Performance optimization: quickTo
+const xTo = gsap.quickTo(cursor, "x", { duration: 0.4, ease: "power3" });
+const yTo = gsap.quickTo(cursor, "y", { duration: 0.4, ease: "power3" });
+
+window.addEventListener("mousemove", (e) => {
+    // Offset by half the cursor width/height to center it
+    xTo(e.clientX - 10);
+    yTo(e.clientY - 10);
+});
+
+// Hover Effect for Project Cards & Buttons
+const interactiveElems = document.querySelectorAll(".resource-card, .cnt, .hero-btn, .social-btn, .dock-item");
+
+interactiveElems.forEach((elem) => {
+    elem.addEventListener("mouseenter", () => {
+        cursor.classList.add("active");
+        
+        // Change text based on what you are hovering
+        if (elem.classList.contains("resource-card")) {
+            cursorText.innerText = "GET IT";
+        } else if (elem.classList.contains("cnt")) {
+            cursorText.innerText = "VIEW";
+        } else {
+            cursorText.innerText = "GO";
+        }
+    });
+
+    elem.addEventListener("mouseleave", () => {
+        cursor.classList.add("active"); // Remove the class
+        cursor.classList.remove("active");
+        cursorText.innerText = "";
+    });
+});
