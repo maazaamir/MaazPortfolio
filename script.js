@@ -117,7 +117,41 @@ window.addEventListener("mousemove", (e) => {
     xTo(e.clientX - 10);
     yTo(e.clientY - 10);
 });
+// --- 6. Magnetic Button Effect ("Hire Me") ---
 
+const magneticBtns = document.querySelectorAll(".hire-me-nav, .resource-link, .hero-btn.outline");
+
+magneticBtns.forEach((btn) => {
+    // Check if the button exists to prevent console errors
+    if (btn) {
+        // quickTo for buttery smooth movement
+        const xTo = gsap.quickTo(btn, "x", { duration: 0.8, ease: "elastic.out(1, 0.3)" });
+        const yTo = gsap.quickTo(btn, "y", { duration: 0.8, ease: "elastic.out(1, 0.3)" });
+
+        btn.addEventListener('mousemove', (e) => {
+            // 1. Get the exact dimensions and position of the button
+            const { left, top, width, height } = btn.getBoundingClientRect();
+            
+            // 2. Find the center point of the button
+            const centerX = left + width / 2;
+            const centerY = top + height / 2;
+            
+            // 3. Calculate how far the cursor is from the center
+            const deltaX = e.clientX - centerX;
+            const deltaY = e.clientY - centerY;
+
+            // 4. Move the button by a fraction of that distance (0.35 means 35% pull)
+            xTo(deltaX * 0.35);
+            yTo(deltaY * 0.35);
+        });
+
+        // 5. When the mouse leaves, snap the button back to its origin (0, 0)
+        btn.addEventListener('mouseleave', () => {
+            xTo(0);
+            yTo(0);
+        });
+    }
+});
 // Hover Effect for Project Cards & Buttons
 const interactiveElems = document.querySelectorAll(".resource-card, .cnt, .hero-btn, .social-btn, .dock-item");
 
