@@ -3,13 +3,13 @@
 <head>
   <meta name="p:domain_verify" content="dad423cf40416646654e281c99aa0a9d"/>
   <meta property="og:type" content="website">
-<meta property="og:url" content="https://maazaamir.github.io/">
-<meta property="og:title" content="Maaz Aamir — Maaz Dev Studio">
-<meta property="og:description" content="Cinematic digital experiences and premium web templates.">
-<meta property="og:image" content="https://yourlink.com/preview-image.jpg">
+  <meta property="og:url" content="https://maazaamir.github.io/">
+  <meta property="og:title" content="Maaz Aamir — Maaz Dev Studio">
+  <meta property="og:description" content="Cinematic digital experiences and premium web templates.">
+  <meta property="og:image" content="https://yourlink.com/preview-image.jpg">
 
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:title" content="Maaz Aamir — Maaz Dev Studio">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="Maaz Aamir — Maaz Dev Studio">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#143d32" />
@@ -28,7 +28,7 @@
   <div id="cursor">
     <div class="cursor-dot"></div>
     <div class="cursor-text">VIEW</div>
-</div>
+  </div>
   <a class="skip-link" href="#content">Skip to content</a>
 
   <div id="loader" aria-hidden="true">
@@ -62,9 +62,9 @@
           <a href="#skills">Skills<span class="line"></span></a>
           <a href="#contact">Contact<span class="line"></span></a>
           <a href="mailto:maazaamir.dev@gmail.com" class="hero-btn hire-me-nav">Hire Me</a>
+          
         </div>
       </nav>
-
       <div class="circle-badge" data-scroll data-scroll-sticky data-scroll-target="#home">
         <div class="circle-text">
           <svg viewBox="0 0 100 100" width="150" height="150">
@@ -103,7 +103,7 @@
         </div>
       </div>
     </header>
-
+    
     <section id="work" class="section">
       <div class="exprince container">
         <h5>Things I can help you with</h5>
@@ -113,6 +113,11 @@
 
       <div class="workrow container">
         <h1>Feat Wo<span class="textcolor">r</span>ks <span class="mini">(05)</span></h1>
+        <div class="filter-controls" style="display: flex; gap: 10px; align-items: center;">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="saas">SaaS</button>
+          <button class="filter-btn" data-filter="ecommerce">Shop</button>
+        </div>
         <svg class="o-ui-arrow" width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M3.10162 3.10156L62.9999 62.9999" stroke-linecap="round" stroke-linejoin="round"></path>
           <path d="M63 1.00001L63 63L0.999989 63" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -120,47 +125,38 @@
       </div>
 
       <div id="images" class="container">
-        <div class="cnt cnt1">
-          <img data-scroll data-scroll-speed="-1.5" src="Images/aeizei.7edf201c.png" alt="Aeizei Project" loading="lazy">
+        <div class="cnt cnt1 project-card" data-category="saas">
+          <img data-scroll data-scroll-speed="-1.5" src="Images/Gemini_Generated_Image_c3ffufc3ffufc3ff (1).png" alt="NexusAI Project" loading="lazy">
           <div class="overlay">
             <div class="overlay-text">
-              <h5>UI/UX Design</h5>
-              <h3>Aeizei Brand</h3>
-            </div>
-            <div class="overlay-icon">
-              <i class="fas fa-arrow-right"></i>
+              <h5>SaaS / AI</h5>
+              <h3>NexusAI Dash</h3>
             </div>
           </div>
         </div>
 
-        <div class="cnt cnt2">
+        <div class="cnt cnt2 project-card" data-category="ecommerce">
           <img data-scroll data-scroll-speed="-1.5" src="Images/display.835f9d62.png" alt="Display Dashboard" loading="lazy">
           <div class="overlay">
             <div class="overlay-text">
               <h5>Web Development</h5>
               <h3>Admin Display</h3>
             </div>
-            <div class="overlay-icon">
-              <i class="fas fa-arrow-right"></i>
-            </div>
           </div>
         </div>
 
-        <div class="cnt cnt3">
+        <div class="cnt cnt3 project-card" data-category="ecommerce">
           <img data-scroll data-scroll-speed="-1.5" src="Images/quaive.6fc624fe.png" alt="Quaive Interface" loading="lazy">
           <div class="overlay">
             <div class="overlay-text">
               <h5>Branding</h5>
               <h3>Quaive App</h3>
             </div>
-            <div class="overlay-icon">
-              <i class="fas fa-arrow-right"></i>
-            </div>
           </div>
         </div>
       </div>
     </section>
-
+      
     <section id="playbook" class="section playbook-section">
       <div class="container">
         <div class="playbook-header">
@@ -302,5 +298,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
   <script src="script.js"></script>
+  <div id="milestone-toast" class="milestone-card">
+    <div class="toast-icon"><i class="fas fa-chart-line"></i></div>
+    <div class="toast-content">
+        <h4>10K Monthly Views</h4>
+        <p>Growing on Pinterest</p>
+    </div>
+    <button class="close-toast">&times;</button>
+</div>
 </body>
 </html>

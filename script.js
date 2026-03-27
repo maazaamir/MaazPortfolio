@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // 1. Properly Wrap text in Spans for GSAP
+    // 1. Text Animation Wrappers
     function revealToSpan() {
         document.querySelectorAll(".reveal").forEach(function (elem) {
             let tempContent = elem.innerHTML;
@@ -14,51 +14,40 @@ document.addEventListener("DOMContentLoaded", () => {
             elem.appendChild(parent);
         });
     }
-
     revealToSpan();
 
-    // 2. Timeline for Loader
+    // 2. Main Loader Timeline
     let tl = gsap.timeline();
-
     gsap.set(".parent .child", { y: "100%" });
 
     tl.to(".parent .child", {
-        y: "0%",
-        duration: 1,
-        stagger: 0.2,
-        ease: "power3.out"
+        y: "0%", duration: 1, stagger: 0.2, ease: "power3.out"
     })
     .to("#fs", { height: "100vh", duration: 0.8, ease: "expo.inOut", delay: 0.5 })
     .to("#white", { height: "100vh", duration: 0.8, ease: "expo.inOut" }, "-=0.6")
     .to("#elem", { height: "100vh", duration: 0.8, ease: "expo.inOut" }, "-=0.6")
-    .to("#loader", { opacity: 0, duration: 0.2 }) 
+    .to("#loader", { opacity: 0, duration: 0.2, onComplete: () => {
+        document.getElementById("loader").style.display = "none";
+        initScroll(); 
+    }}) 
     .to("#fs, #white, #elem", {
-        height: "0%",
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "expo.inOut",
-        onComplete: () => {
-            initScroll(); // Initialize scroll
-            document.getElementById("loader").style.display = "none";
-        }
-    })
-    .to("#green", { height: "100%", duration: 0.6, top: 0, ease: "circ.inOut" }, "-=1")
-    .to("#green", { height: "0%", duration: 0.6, ease: "circ.inOut" });
+        height: "0%", duration: 0.8, stagger: 0.1, ease: "expo.inOut"
+    });
 
-    // 3. Initialize Locomotive Scroll & Sync GSAP
+    // 3. Locomotive Scroll Init with Height Fix
+    let scroll;
     function initScroll() {
         const scroller = document.querySelector("[data-scroll-container]");
         
-        const scroll = new LocomotiveScroll({
+        scroll = new LocomotiveScroll({
             el: scroller,
-            smooth: true,
-            multiplier: 1, // Adjust scroll speed here
-            lerp: 0.05 // Adjust smoothness (0.1 is default)
+            smooth: true, 
+            multiplier: 1, 
+            lerp: 0.05
         });
 
         // Sync ScrollTrigger with Locomotive
         scroll.on("scroll", ScrollTrigger.update);
-
         ScrollTrigger.scrollerProxy(scroller, {
             scrollTop(value) {
                 return arguments.length ? scroll.scrollTo(value, 0, 0) : scroll.scroll.instance.scroll.y;
@@ -69,109 +58,97 @@ document.addEventListener("DOMContentLoaded", () => {
             pinType: scroller.style.transform ? "transform" : "fixed"
         });
 
-        // VERY IMPORTANT: Tell ScrollTrigger to watch the Locomotive scroller
+        // REFRESH FIX: This watches for any height changes (like your new About section)
+        const resizeObserver = new ResizeObserver(() => scroll.update());
+        resizeObserver.observe(scroller);
+
         ScrollTrigger.addEventListener("refresh", () => scroll.update());
         ScrollTrigger.refresh();
     }
 
-    // 4. Update Time (Using the 24-hour format or 12-hour)
-    function updateTime() {
-        const timeElement = document.getElementById('localTime');
-        if (timeElement) {
-            const now = new Date();
-            timeElement.innerText = now.toLocaleTimeString('en-US', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                hour12: true 
-            }) + " INDIA — AVAILABLE";
-        }
-    }
-    updateTime();
-    setInterval(updateTime, 60000);
+    // 4. Project Filter Logic
+    const filterButtons = document.querySelectorAll(".filter-btn");
+    const projectCards = document.querySelectorAll(".project-card");
 
-    // 5. Image Hover Parallax 
-    // Optimization: Only animate if the element exists to avoid console errors
-    const imgContainers = document.querySelectorAll(".imgcontainer");
-    if(imgContainers.length > 0) {
-        imgContainers.forEach((img, i) => {
-            gsap.to(img, {
-                y: (i + 1) * -15,
-                duration: 2,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
+    filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+            filterButtons.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            const filterValue = btn.getAttribute("data-filter");
+
+            gsap.to(projectCards, {
+                opacity: 0, scale: 0.9, duration: 0.3,
+                onComplete: () => {
+                    projectCards.forEach(card => {
+                        const category = card.getAttribute("data-category");
+                        if (filterValue === "all" || category === filterValue) {
+                            card.style.display = "block";
+                            gsap.to(card, { opacity: 1, scale: 1, duration: 0.4 });
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+                    // Tell Locomotive to recalculate after filtering
+                    if(scroll) scroll.update();
+                }
             });
         });
-    }
-});
-// Custom Follower Cursor Logic
-const cursor = document.querySelector("#cursor");
-const cursorText = document.querySelector(".cursor-text");
+    });
 
-// Performance optimization: quickTo
-const xTo = gsap.quickTo(cursor, "x", { duration: 0.4, ease: "power3" });
-const yTo = gsap.quickTo(cursor, "y", { duration: 0.4, ease: "power3" });
+    // 5. Dark/Light Mode Toggle Logic
+    const toggleSwitch = document.querySelector('#checkbox');
+    const currentTheme = localStorage.getItem('theme');
 
-window.addEventListener("mousemove", (e) => {
-    // Offset by half the cursor width/height to center it
-    xTo(e.clientX - 10);
-    yTo(e.clientY - 10);
-});
-// --- 6. Magnetic Button Effect ("Hire Me") ---
-
-const magneticBtns = document.querySelectorAll(".hire-me-nav, .resource-link, .hero-btn.outline");
-
-magneticBtns.forEach((btn) => {
-    // Check if the button exists to prevent console errors
-    if (btn) {
-        // quickTo for buttery smooth movement
-        const xTo = gsap.quickTo(btn, "x", { duration: 0.8, ease: "elastic.out(1, 0.3)" });
-        const yTo = gsap.quickTo(btn, "y", { duration: 0.8, ease: "elastic.out(1, 0.3)" });
-
-        btn.addEventListener('mousemove', (e) => {
-            // 1. Get the exact dimensions and position of the button
-            const { left, top, width, height } = btn.getBoundingClientRect();
-            
-            // 2. Find the center point of the button
-            const centerX = left + width / 2;
-            const centerY = top + height / 2;
-            
-            // 3. Calculate how far the cursor is from the center
-            const deltaX = e.clientX - centerX;
-            const deltaY = e.clientY - centerY;
-
-            // 4. Move the button by a fraction of that distance (0.35 means 35% pull)
-            xTo(deltaX * 0.35);
-            yTo(deltaY * 0.35);
-        });
-
-        // 5. When the mouse leaves, snap the button back to its origin (0, 0)
-        btn.addEventListener('mouseleave', () => {
-            xTo(0);
-            yTo(0);
-        });
-    }
-});
-// Hover Effect for Project Cards & Buttons
-const interactiveElems = document.querySelectorAll(".resource-card, .cnt, .hero-btn, .social-btn, .dock-item");
-
-interactiveElems.forEach((elem) => {
-    elem.addEventListener("mouseenter", () => {
-        cursor.classList.add("active");
-        
-        // Change text based on what you are hovering
-        if (elem.classList.contains("resource-card")) {
-            cursorText.innerText = "GET IT";
-        } else if (elem.classList.contains("cnt")) {
-            cursorText.innerText = "VIEW";
-        } else {
-            cursorText.innerText = "GO";
+    if (currentTheme) {
+        document.body.classList.add(currentTheme + '-mode');
+        if (currentTheme === 'light') {
+            toggleSwitch.checked = true;
         }
+    }
+
+    function switchTheme(e) {
+        if (e.target.checked) {
+            document.body.classList.replace('dark-mode', 'light-mode') || document.body.classList.add('light-mode');
+            localStorage.setItem('theme', 'light');
+            gsap.to("body", { backgroundColor: "#f5f5f7", color: "#1d1d1f", duration: 0.5 });
+        } else {
+            document.body.classList.replace('light-mode', 'dark-mode');
+            localStorage.setItem('theme', 'dark');
+            gsap.to("body", { backgroundColor: "#000", color: "#fff", duration: 0.5 });
+        }
+        if(scroll) scroll.update(); // Update scroll on theme change
+    }
+    if(toggleSwitch) toggleSwitch.addEventListener('change', switchTheme, false);
+
+    // 6. Custom Cursor
+    const cursor = document.querySelector("#cursor");
+    window.addEventListener("mousemove", (e) => {
+        gsap.to(cursor, { x: e.clientX - 10, y: e.clientY - 10, duration: 0.4 });
     });
 
-    elem.addEventListener("mouseleave", () => {
-        cursor.classList.add("active"); // Remove the class
-        cursor.classList.remove("active");
-        cursorText.innerText = "";
-    });
+    // 7. Milestone Toast Logic (10k Pulse)
+    setTimeout(() => {
+        const toast = document.querySelector("#milestone-toast");
+        if (toast) {
+            gsap.to(toast, { 
+                bottom: "30px", 
+                opacity: 1, 
+                duration: 1, 
+                ease: "expo.out" 
+            });
+
+            // Auto-hide after 6 seconds
+            setTimeout(() => {
+                gsap.to(toast, { bottom: "-100px", opacity: 0, duration: 1.5 });
+            }, 6000);
+        }
+    }, 4000);
+
+    // Close button logic
+    const closeToast = document.querySelector(".close-toast");
+    if(closeToast) {
+        closeToast.addEventListener("click", () => {
+            gsap.to("#milestone-toast", { bottom: "-100px", opacity: 0, duration: 0.5 });
+        });
+    }
 });
