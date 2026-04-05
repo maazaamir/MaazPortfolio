@@ -22,6 +22,18 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.css">
   <link rel="stylesheet" href="style.css" />
+  
+  <style>
+    /* New Shop Styles Added for MDS© */
+    .shop-link-nav { color: #bc9cff !important; font-weight: 800 !important; }
+    .img-label {
+      position: absolute; bottom: 20px; left: 20px;
+      background: rgba(0,0,0,0.8); padding: 5px 12px;
+      font-size: 10px; letter-spacing: 2px;
+      border: 1px solid #bc9cff; color: #bc9cff; z-index: 10;
+    }
+    .imgcontainer-link { position: relative; display: block; width: 100%; height: 100%; }
+  </style>
 </head>
 
 <body>
@@ -58,13 +70,14 @@
         </button>
 
         <div class="nav-links" id="navLinks">
+          <a href="https://maazaamir.gumroad.com" target="_blank" class="shop-link-nav">Shop <i class="fas fa-shopping-cart"></i><span class="line"></span></a>
           <a href="#playbook">Playbook<span class="line"></span></a>
           <a href="#skills">Skills<span class="line"></span></a>
           <a href="#contact">Contact<span class="line"></span></a>
           <a href="mailto:maazaamir.dev@gmail.com" class="hero-btn hire-me-nav">Hire Me</a>
-          
         </div>
       </nav>
+      
       <div class="circle-badge" data-scroll data-scroll-sticky data-scroll-target="#home">
         <div class="circle-text">
           <svg viewBox="0 0 100 100" width="150" height="150">
@@ -96,10 +109,14 @@
           <h1>I’m Maaz Aamir, crafting <span>unconventional</span> yet functional & visually pleasing, responsive interfaces for web and mobile.</h1>
         </div>
 
-        <div id="imgright">
+      <div id="imgright">
+
           <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1614027164847-1b28cfe1df60?q=80&w=1600&auto=format&fit=crop');"></div>
+
           <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1520517601640-32ec514e4a15?q=80&w=1600&auto=format&fit=crop');"></div>
+
           <div class="imgcontainer" style="background-image:url('https://images.unsplash.com/photo-1635713150362-ed0cd425e697?q=80&w=1600&auto=format&fit=crop');"></div>
+
         </div>
       </div>
     </header>
@@ -126,7 +143,7 @@
 
       <div id="images" class="container">
         <div class="cnt cnt1 project-card" data-category="saas">
-          <img data-scroll data-scroll-speed="-1.5" src="Images/Gemini_Generated_Image_c3ffufc3ffufc3ff (1).png" alt="NexusAI Project" loading="lazy">
+          <img data-scroll data-scroll-speed="-1.5" src="Images/aeizei.7edf201c.png" alt="NexusAI Project" loading="lazy">
           <div class="overlay">
             <div class="overlay-text">
               <h5>SaaS / AI</h5>
@@ -161,7 +178,7 @@
       <div class="container">
         <div class="playbook-header">
           <h1 class="section-heading">Digital <span class="textcolor">Playbook</span></h1>
-          <p class="subtitle">Curated resources, UI kits, and production-ready code for modern developers.</p>
+          <p class="subtitle">Join 4,500+ developers using premium UI kits and production-ready GSAP frameworks.</p>
         </div>
 
         <div class="resources-grid">
@@ -298,13 +315,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
   <script src="script.js"></script>
+  
   <div id="milestone-toast" class="milestone-card">
     <div class="toast-icon"><i class="fas fa-chart-line"></i></div>
     <div class="toast-content">
-        <h4>10K Monthly Views</h4>
-        <p>Growing on Pinterest</p>
+        <h4>40K Monthly Views</h4>
+        <p>Trending on Pinterest</p>
     </div>
     <button class="close-toast">&times;</button>
-</div>
+  </div>
 </body>
 </html>

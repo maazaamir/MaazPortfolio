@@ -336,7 +336,7 @@ img { max-width: 100%; display: block; }
 
 /* Selected Projects Section */
 .projects-section { 
-  padding: 120px 0; 
+  padding: 10px 0; 
   background: #fdfdfd; /* Slightly cleaner white */
 }
 
